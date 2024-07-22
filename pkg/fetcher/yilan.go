@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/gocolly/colly/v2"
-	"google.golang.org/appengine/log"
+	log "github.com/sirupsen/logrus"
 )
 
 const YilanGymDir = "data/yilan/gym"
@@ -34,7 +34,7 @@ func Yilan() {
 			now := time.Now()
 
 			if len(nums) == 2 {
-				log.Infof("健身房: %s / %s\n", nums[0], nums[1])
+				log.Info(fmt.Sprintf("健身房: %s / %s\n", nums[0], nums[1]))
 				datas := []Data{}
 				datas = append(datas, Data{
 					Time:     now,
@@ -47,10 +47,10 @@ func Yilan() {
 					getPathFromTime(now),
 				)
 				if err := writeCSV(path, DataToCsv(datas)); err != nil {
-					log.Errorf("writeCSV error: %v", err)
+					log.Error(fmt.Sprintf("writeCSV error: %v", err))
 				}
 			} else {
-				log.Warningf("Invalid data: %v", nums)
+				log.Warning(fmt.Sprintf("Invalid data: %v", nums))
 			}
 
 		case strings.Contains(e.Text, "游泳池") && strings.Contains(e.Text, "容留"):
@@ -58,7 +58,7 @@ func Yilan() {
 			now := time.Now()
 
 			if len(nums) == 2 {
-				fmt.Printf("游泳池: %s / %s\n", nums[0], nums[1])
+				log.Info(fmt.Sprintf("游泳池: %s / %s\n", nums[0], nums[1]))
 				datas := []Data{}
 				datas = append(datas, Data{
 					Time:     now,
@@ -71,13 +71,13 @@ func Yilan() {
 					getPathFromTime(now),
 				)
 				if err := writeCSV(path, DataToCsv(datas)); err != nil {
-					log.Errorf("writeCSV error: %v", err)
+					log.Error(fmt.Sprintf("writeCSV error: %v", err))
 				}
 			} else {
-				log.Warningf("Invalid data: %v", nums)
+				log.Warning(fmt.Sprintf("Invalid data: %v", nums))
 			}
 		default:
-			log.Warningf("No match")
+			// do nothing
 		}
 	})
 
