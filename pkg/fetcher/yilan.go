@@ -62,7 +62,7 @@ func Yilan() {
 				datas := []Data{}
 				datas = append(datas, Data{
 					Time:     now,
-					Name:     "gym",
+					Name:     "swimmingpool",
 					Number:   nums[0],
 					Capacity: nums[1],
 				})

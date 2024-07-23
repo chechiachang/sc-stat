@@ -20,7 +20,7 @@ import (
 
 var (
 	sourceOwner   = flag.String("source-owner", "chechiachang", "Name of the owner (user or org) of the repo to create the commit in.")
-	sourceRepo    = flag.String("source-repo", "sc-stat", "Name of repo to create the commit in.")
+	sourceRepo    = flag.String("source-repo", "sc-stat-data", "Name of repo to create the commit in.")
 	commitMessage = flag.String("commit-message", "", "Content of the commit message.")
 	commitBranch  = flag.String("commit-branch", "main", "Name of branch to create the commit in. If it does not already exists, it will be created using the `base-branch` parameter")
 	repoBranch    = flag.String("repo-branch", "main", "Name of the repository where the changes in the pull request were made. This field is required for cross-repository pull requests if both repositories are owned by the same organization")
