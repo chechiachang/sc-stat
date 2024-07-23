@@ -1,12 +1,7 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "github.com/chechiachang/sc-stat/pkg/github"
 
 func main() {
-	// Code
-	now := time.Now().UTC().Format(time.RFC3339)
-	fmt.Println(now)
+	github.CommitPush()
 }

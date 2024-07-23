@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/chechiachang/sc-stat/pkg/fetcher"
+	"github.com/chechiachang/sc-stat/pkg/github"
 	"github.com/robfig/cron/v3"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -44,9 +45,13 @@ func run(baseCtx context.Context) error {
 
 func runServer(ctx context.Context) error {
 	log.Info("Starting server")
-
 	cronjob := cron.New()
+
+	// data fetcher
 	cronjob.AddFunc("@every 1m", fetcher.Yilan)
+	// data commit
+	cronjob.AddFunc("@every 10m", github.CommitPush)
+
 	cronjob.Start()
 	for {
 		select {

@@ -23,3 +23,8 @@ go.work.sum
 
 # dotenv
 .env*
+
+# test files
+cmd/test/**
+
+.DS_Store
