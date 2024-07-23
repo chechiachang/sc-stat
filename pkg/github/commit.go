@@ -187,6 +187,6 @@ func CommitPush() {
 		log.Fatalf("Unable to create the commit: %s\n", err)
 	}
 
-	log.Info("Commit created successfully")
+	log.Infof("Commit created successfully: %s\n", *sourceFiles)
 
 }
