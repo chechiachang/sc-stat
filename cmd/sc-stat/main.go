@@ -2,11 +2,10 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"strings"
-	"time"
 
 	"github.com/chechiachang/sc-stat/pkg/fetcher"
+	"github.com/chechiachang/sc-stat/pkg/git"
 	"github.com/chechiachang/sc-stat/pkg/github"
 	"github.com/robfig/cron/v3"
 	log "github.com/sirupsen/logrus"
@@ -31,6 +30,11 @@ func init() {
 
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_", "-", "_"))
 	viper.AutomaticEnv()
+
+	url := "https://github.com/chechiachang/sc-stat"
+	directory := "."
+	submodule := "data"
+	git.GitInit(url, directory, submodule)
 }
 
 func main() {
@@ -52,18 +56,7 @@ func runServer(ctx context.Context) error {
 	// data fetcher
 	cronjob.AddFunc("@every 1m", fetcher.Yilan)
 	// data commit
-	date := time.Now()
-	commitService := github.CommitService{
-		commitMessage: fmt.Sprintf("chore: upload data on %s", date.Format("2006-1-2")),
-		sourceOwner:   "chechiachang",
-		sourceRepo:    "sc-stat-data",
-		commitBranch:  "main",
-		baseBranch:    "main",
-		authorName:    "sc-stat-automation",
-		authorEmail:   "chechiachang999@gmail.com",
-		privateKey:    "",
-	}
-	cronjob.AddFunc("@every 10m", commitService.CommitPush)
+	cronjob.AddFunc("@every 10m", github.CommitPush)
 
 	cronjob.Start()
 	for {

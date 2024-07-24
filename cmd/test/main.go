@@ -1,7 +1,10 @@
 package main
 
-import "github.com/chechiachang/sc-stat/pkg/github"
+import "github.com/chechiachang/sc-stat/pkg/git"
 
 func main() {
-	github.CommitPush()
+	url := "https://github.com/chechiachang/sc-stat"
+	directory := "."
+	submodule := "data"
+	git.GitInit(url, directory, submodule)
 }
