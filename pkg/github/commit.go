@@ -73,7 +73,11 @@ func getTree(ref *github.Reference) (tree *github.Tree, err error) {
 		if err != nil {
 			return nil, err
 		}
-		entries = append(entries, &github.TreeEntry{Path: github.String(file), Type: github.String("blob"), Content: github.String(string(content)), Mode: github.String("100644")})
+		entries = append(entries, &github.TreeEntry{
+			Path:    github.String(strings.SplitN(file, "/", 2)[1]), // remove root from tree path for submodule
+			Type:    github.String("blob"),
+			Content: github.String(string(content)),
+			Mode:    github.String("100644")})
 	}
 
 	tree, _, err = client.Git.CreateTree(ctx, *sourceOwner, *sourceRepo, *ref.Object.SHA, entries)
