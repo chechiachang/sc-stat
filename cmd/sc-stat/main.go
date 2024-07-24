@@ -13,8 +13,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "datafetcherd",
-	Short: "data fetcher daemon",
+	Use:   "datafetcher",
+	Short: "data fetcher cronjob runner",
 	Long:  "fetch public data from various sources",
 
 	SilenceUsage: false,
