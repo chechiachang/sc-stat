@@ -34,7 +34,7 @@ func Yilan() {
 			now := time.Now()
 
 			if len(nums) == 2 {
-				log.Info(fmt.Sprintf("健身房: %s / %s\n", nums[0], nums[1]))
+				log.Info(fmt.Sprintf("健身房: %s / %s", nums[0], nums[1]))
 				datas := []Data{}
 				datas = append(datas, Data{
 					Time:     now,
@@ -58,7 +58,7 @@ func Yilan() {
 			now := time.Now()
 
 			if len(nums) == 2 {
-				log.Info(fmt.Sprintf("游泳池: %s / %s\n", nums[0], nums[1]))
+				log.Info(fmt.Sprintf("游泳池: %s / %s", nums[0], nums[1]))
 				datas := []Data{}
 				datas = append(datas, Data{
 					Time:     now,
