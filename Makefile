@@ -13,3 +13,6 @@ image:
 	docker buildx inspect
 	docker buildx bake --print
 	docker buildx bake --push
+
+deploy:
+	helm upgrade --install --reset-values --cleanup-on-fail --namespace sc-stat sc-stat charts/sc-stat
