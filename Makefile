@@ -9,5 +9,7 @@ goose:
 	goose -dir migrations sqlite3 ./db/development up
 	goose -dir migrations sqlite3 ./db/development status
 
-docker:
-	docker build -t chechiachang/sc-stat:dev .
+image:
+	docker buildx inspect
+	docker buildx bake --print
+	docker buildx bake --push
