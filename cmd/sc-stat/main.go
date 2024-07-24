@@ -31,10 +31,9 @@ func init() {
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_", "-", "_"))
 	viper.AutomaticEnv()
 
-	url := "https://github.com/chechiachang/sc-stat"
-	directory := "."
-	submodule := "data"
-	git.GitInit(url, directory, submodule)
+	url := "https://github.com/chechiachang/sc-stat-data"
+	directory := "data"
+	git.GitInit(url, directory)
 }
 
 func main() {
@@ -59,6 +58,7 @@ func runServer(ctx context.Context) error {
 	cronjob.AddFunc("@every 10m", github.CommitPush)
 
 	cronjob.Start()
+	log.Info("Cronjob started")
 	for {
 		select {
 		case <-ctx.Done():

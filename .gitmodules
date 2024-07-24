@@ -1,3 +1,3 @@
 [submodule "data"]
 	path = data
-	url = git@github.com:chechiachang/sc-stat-data.git
+	url = https://github.com/chechiachang/sc-stat-data.git
